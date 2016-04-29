@@ -1,11 +1,3 @@
-
-
-$(document).ready(function() {
-  discoverMovies(render);
-});
-
-
-
 var model = {
   watchlistItems: [],
   browseItems: []
@@ -14,7 +6,7 @@ var model = {
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "8e888fa39ec243e662e1fb738c42ae99" // TODO 0 add your api key
+  token: "8e888fa39ec243e662e1fb738c42ae99"
 }
 
 
@@ -32,6 +24,9 @@ function discoverMovies(callback) {
     success: function(response) {
       model.browseItems = response.results;
       callback(response);
+    },
+    fail: function() {
+      console.log("fail!");
     }
   });
 }
@@ -45,8 +40,22 @@ function discoverMovies(callback) {
  * the callback function that was passed in
  */
 function searchMovies(query, callback) {
-  // TODO 8
+  // DONE
 
+  $.ajax({
+    url: api.root + "/search/movie",
+    data: {
+      api_key: api.token,
+      query: query
+    },
+    success: function(response) {
+      model.browseItems = response.results;
+      callback(response);
+    },
+    fail: function() {
+      console.log("search failed");
+    }
+  });
 }
 
 
@@ -54,20 +63,18 @@ function searchMovies(query, callback) {
  * re-renders the page with new content, based on the current state of the model
  */
 function render() {
+  var watchlistElement = $("#section-watchlist ul");
+  var browseElement = $("#section-browse ul");
 
   // clear everything
-  $("#section-watchlist ul").empty();
-  $("#section-browse ul").empty();
+  watchlistElement.empty();
+  browseElement.empty();
 
   // insert watchlist items
   model.watchlistItems.forEach(function(movie) {
-    var title = $("<p></p>").text(movie.original_title);
-    var itemView = $("<li></li>")
-      .append(title)
-      // TODO 3
-      // give itemView a class attribute of "item-watchlist"
-
-    $("#section-watchlist ul").append(itemView);
+    var title = $("<h5></h5>").text(movie.original_title);
+    var itemView = $("<li></li>").append(title);
+    watchlistElement.append(itemView);
   });
 
   // insert browse items
@@ -78,31 +85,25 @@ function render() {
       .click(function() {
         model.watchlistItems.push(movie);
         render();
-      });
-      // TODO 2
+      })
+      .prop("disabled", model.watchlistItems.indexOf(movie) !== -1);
+      // DONE (see line above)
       // the button should be disabled if this movie is already in
       // the user's watchlist
       // see jQuery .prop() and Array.indexOf()
 
 
-    // TODO 1
+    // DONE
     // create a paragraph containing the movie object's .overview value
-    // then, in the code block below,
-    // append the paragraph in between the title and the button
+    // then append the paragraph in between the title and the button
+    var overview = $("<p></p>").text(movie.overview);
 
-
-    // append everything to itemView, along with an <hr/>
     var itemView = $("<li></li>")
-      .append($("<hr/>"))
       .append(title)
+      .append(overview)
       .append(button);
 
-    // append the itemView to the list
-    $("#section-browse ul").append(itemView);
+    browseElement.append(itemView);
   });
   
 }
-
-
-
-
