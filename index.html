@@ -53,9 +53,11 @@
       // DONE
       // add a submit handler for the form above
       // should cause a fetch and re-render
-      $("#form-search").submit(function(evt) {
-        evt.preventDefault();
+      $("#form-search").submit(function(event) {
+        event.preventDefault();
+        //figure out what the user typed 
         var query = $("#form-search input[name=query]").val();
+        //call search movies
         searchMovies(query, render);
       });
       // even though we are adding the search form, we still want to fetch

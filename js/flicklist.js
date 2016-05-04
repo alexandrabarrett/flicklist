@@ -50,7 +50,7 @@ function searchMovies(query, callback) {
     },
     success: function(response) {
       model.browseItems = response.results;
-      callback(response);
+      callback();
     },
     fail: function() {
       console.log("search failed");
@@ -74,7 +74,10 @@ function render() {
   model.watchlistItems.forEach(function(movie) {
     var title = $("<h5></h5>").text(movie.original_title);
     var itemView = $("<li></li>").append(title);
+  
+    watchlistElement.attr("class", "item-watchlist");
     watchlistElement.append(itemView);
+    
   });
 
   // insert browse items
@@ -85,8 +88,9 @@ function render() {
       .click(function() {
         model.watchlistItems.push(movie);
         render();
-      })
-      .prop("disabled", model.watchlistItems.indexOf(movie) !== -1);
+      });
+      
+      button.prop("disabled", model.watchlistItems.indexOf(movie) !== -1);
       // DONE (see line above)
       // the button should be disabled if this movie is already in
       // the user's watchlist
@@ -100,6 +104,7 @@ function render() {
 
     var itemView = $("<li></li>")
       .append(title)
+      
       .append(overview)
       .append(button);
 

@@ -6,6 +6,10 @@ Make good use of the developer tools:
 -- on your own page, use dev tools to add and modify styles directly in the browser
 */
 
+body{
+	color:gray;
+}
+
 
 #big-header {
 	background: gray;
@@ -18,22 +22,22 @@ Make good use of the developer tools:
 	color: gray;
 }
 
-#watch li {
-	color: pink;
-	padding: 20px;
-	background: gray;
-	 margin-right: 70%;
-} 
+ 
 
 #section-browse {
   background: pink;
   color: gray;
 }
 
-#submit{
-	color:white;
-	background: gray;
+.item-watchlist {
+	display: inline-block;
+	background:orange;
+	color: white;
+	padding: 60px;
+	margin: 10px, 10px, 0px, 0px;
 }
+
+
 
 section, #big-header, #form-search {
 	padding: 20px;
@@ -56,4 +60,10 @@ li h4 {
 
 ul {
 	margin-top: 40px;
+}
+
+
+button, input[type="submit"]{
+	border-width: 0px;
+	background: orange;
 }
