@@ -1,82 +1,55 @@
-
-
 /*
-TODO 2c
-Customize the .jumbotron class to have centered text instead of left-aligned
-Also change its bottom margin to 1%
+TODO
+Customize your bootstrap.
+All images should take up the entire width of their container
+<li>s inside the watchlist section should have a width of 160 pixels,
+and should align side-by-side until hitting the edge of the page.
+The "I watched it" buttons should fill the entire width of their containers
 */
 
 
-/*
-TODO 2h
-Give the Watchlist items some styles:
-- a fixed width of 160px
-- a little bit of margin on the bottom and right edges
-- no padding
-*/
-
-
-/*
-TODO 2j
-The "I watched it" button should fill the entire width of its container, 
-and should be 10px below the neighbor element above it
-*/
-
-
-/*
-TODO 3c
-Apply text-align: center; to the watchlist
-*/
-
-
-
-.main-content {
-	color: gray;
-}
-
-#section-browse {
-	background: black;	
-}
-
-#section-browse form {
-	margin-bottom: 2%;
-}
-
-hr {
-	border-color: rgba(128,128,128,0.2);
-}
-
-section header {
-	margin-bottom: 10px;
-}
-
-section {
-	padding: 2%;
-}
-
-
-/*
-TODO 5
-Delete everything else below! 
-The Bootstrap classes have made this stuff no longer relevant
-*/
-
-ul {
-	padding-left: 0px;
-}
-
-button:disabled {
-	opacity: 0.5;
-}
-
-button, input[type="submit"] {
-	padding: 10px;
-	background: orange;
-	border-width: 0px;
+.jumbotron {
+	background: gray;
 	color: white;
 }
 
-#section-browse li {
+#section-watchlist {
+	color: gray;
+}
+
+#section-watchlist li {
+	display: inline-block;
+	width: 160px;
+	margin: 10px;
+}
+
+#section-watchlist button {
+	width: 100%;
+	margin-top: 10px;
+}
+
+ul {
+	padding: 0;
+	margin-top: 40px;
+}
+
+img {
+	width: 100%;
+}
+
+#section-browse {
+	background: black;
+}
+
+header {
 	margin-bottom: 40px;
-	list-style: none;
+	color: gray;
+}
+
+section, .jumbotron, .list-group-item {
+	padding: 20px;
+}
+
+.list-group-item {
+	color: gray;
 }
